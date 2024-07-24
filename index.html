@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Trail Animation</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+}
+span{
+    background:url('https://cdn4.iconfinder.com/data/icons/set-1/32/__1-256.png');
+    width: 100px;
+    height: 100px;
+    position:absolute;
+    background-size:cover;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%)  ;
+    animation: animations 7s linear;
+}
+
+@keyframes animations{
+   0%{
+        transform: translate(-50%,-50%);
+        opacity: 1;
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        transform: translate(-50%,-5000%);
+        opacity: 1;
+        filter:hue-rotate(1500deg);
+    }
+}
+    </style>
+</head>
+
+
+<body id="body">
+    <span></span>
+</body>
+
+
+<script>
+    const bodyEl=document.querySelector('body');
+//or if id or class given ..
+//const bodyEl=document.getElementById('body');
+
+
+bodyEl.addEventListener('mousemove',(event)=>{
+    const xPos=event.offsetX;
+    const yPos=event.offsetY;
+    const spanEI =document.createElement('span');
+    bodyEl.appendChild(spanEI);
+    spanEI.style.left=xPos+'px'
+    spanEI.style.top=yPos+'px'
+
+    const  size =Math.random()*100;
+    console.log('size is ',size);
+    spanEI.style.width=size+'px';
+    spanEI.style.height=size+'px';
+
+    setTimeout(()=>{
+        spanEI.remove();
+    },2000)
+
+    console.log(xPos);
+    console.log(yPos);
+})
+</script>
+
+</html>
